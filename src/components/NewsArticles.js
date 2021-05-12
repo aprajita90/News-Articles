@@ -21,22 +21,9 @@ class NewsArticles extends Component {
     receivedData() {
     Axios.get(`https://newsapi.org/v2/everything?q=Apple&from=2021-05-10&sortBy=popularity&apiKey=85bfa5fe4e3e4264abe47f0a88ecac71`)
         .then((response) => {
-            //console.log("----",response.data.articles)
             const newData = response.data.articles;
             const slice = newData.slice(this.state.offset, this.state.offset + this.state.perPage)
-            console.log("***", slice)
-            // const postData = slice.map(pd => <React.Fragment>
-            //   <tr key={ pd.publishedAt }>
-            //     <td><img src={ pd.urlToImage } style={{ width: 120 }}/></td>
-            //     <td>{ pd.source.name }</td>
-            //     <td>{pd.author}</td>
-            //     <td>{ pd.title }</td>
-            //     <td>{ pd.publishedAt }</td>
-            //     <td> { pd.url }</td>
-            //   </tr> 
-            // </React.Fragment>)
             this.setState({
-               // newData: response.data.articles,
                pageCount: Math.ceil(newData.length / this.state.perPage),
                slice 
             })
@@ -88,12 +75,9 @@ class NewsArticles extends Component {
         return (
           <div>
             <nav className="navbar navbar-light bg-light" >
-            {/* Search: <input style={{float:"left"}} value={this.state.searchAll} onChange={this.searchAll} /> */}
             <input type="text" id="myInput" onKeyUp={this.myFunction} placeholder="Search for title..." title="Type in a name" style={{textAlign:"center", float:"revert", pending:"50px"}}></input>
             </nav>
             <div>
-            {/* <Table newData={ this.state.slice} /> */}
-            {/* <Table newData={ this.state.newData  } /> */}
             <Table newData={ this.state.slice} />
             {/* <Table newData= {this.state.postData}/> */}
               <ReactPaginate
