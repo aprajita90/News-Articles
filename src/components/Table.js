@@ -48,7 +48,7 @@ const SortTable = (n) => {
   }
 
 const Table = ({ newData }) => {
-
+    console.log(newData)
   return (
     <table id="myTable" className="table" >
       <thead>
@@ -57,13 +57,12 @@ const Table = ({ newData }) => {
             <th>Source</th>
             <th>Author</th>
             <th>Title</th>
-            <th onClick={(e) =>SortTable(0)}>Date</th>
+            <th onClick={(e) => SortTable(0)}>Date</th>
             <th>URL</th>
         </tr>
       </thead>
       <tbody>
-        { (newData.length > 0) ? newData.map( (article) => {
-            //console.log("***", article.urlToImage)
+        { (newData) ? newData.map( (article) => {
            return (
             <tr key={ article.publishedAt }>
               <td><img src={ article.urlToImage } style={{ width: 120 }}/></td>
@@ -74,7 +73,7 @@ const Table = ({ newData }) => {
               <td> { article.url }</td>
             </tr>
           )
-         }) : <tr><td colSpan="5">Loading...</td></tr> }
+         }) : <tr><td colSpan="5">Loading...</td></tr> }   
       </tbody>
     </table>
   );
